@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="footer-content">
         <div className="footer-logo">
           <Link to="/">
-            <img src="./img/logo-cnje.png" alt="CNJE" className="footer-logo-img" />
+            <img src="/img/logo-cnje.png" alt="CNJE" className="footer-logo-img" />
           </Link>
           <div className="footer-description">
             La Confédération Nationale des Junior-Entreprises accompagne le développement du mouvement en France.

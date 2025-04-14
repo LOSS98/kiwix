@@ -1,14 +1,19 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import NewsSidebar from '../components/dashboard/NewsSidebar';
+
+const ModuleItem = ({ title, path, color = "primary" }) => {
+  return (
+    <Link to={path} className={`module-item ${color}`}>
+      <div className="module-icon">
+        <svg className="kiwix-logo" viewBox="0 0 24 24" width="24" height="24">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </div>
+      <div className="module-title">{title}</div>
+    </Link>
+  );
+};
 
 const Dashboard = () => {
-  const [showNewsFeed, setShowNewsFeed] = useState(true);
-  
-  const toggleNewsFeed = () => {
-    setShowNewsFeed(!showNewsFeed);
-  };
-  
   const categories = [
     {
       name: "Ma Junior",
@@ -54,30 +59,23 @@ const Dashboard = () => {
   
   return (
     <div className="dashboard-container">
-      <div className={`dashboard-content ${showNewsFeed ? '' : 'full-width'}`}>
+      <div className="dashboard-content">
         {categories.map((category, index) => (
           <div key={index} className="module-category">
             <h2 className="category-name">{category.name}</h2>
             <div className="module-grid">
               {category.items.map((item, itemIndex) => (
-                <Link key={itemIndex} to={item.path} className={`module-item ${item.color}`}>
-                  <div className="module-icon">
-                    <svg className="kiwix-logo" viewBox="0 0 24 24" width="24" height="24">
-                      <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </div>
-                  <div className="module-title">{item.title}</div>
-                </Link>
+                <ModuleItem 
+                  key={itemIndex}
+                  title={item.title}
+                  path={item.path}
+                  color={item.color}
+                />
               ))}
             </div>
           </div>
         ))}
       </div>
-      
-      <NewsSidebar 
-        showNewsFeed={showNewsFeed} 
-        toggleNewsFeed={toggleNewsFeed} 
-      />
     </div>
   );
 };

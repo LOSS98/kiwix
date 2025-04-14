@@ -39,5 +39,6 @@
   --header-height: 64px;
   --sidebar-width: 240px;
   --news-sidebar-width: 350px;
+  --news-sidebar-expanded-width: 450px;
   --footer-height: 70px;
 }
